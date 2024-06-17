@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<view style="width:100%; position: absolute; top: 0; z-index: 10000;background-color: #fff;">
+ 
+    <!-- 广告位 -->
+    <view class="ad-block">
+        <view style="height: 100%;width: 100%;">
+            <view style="display:inline-block; position: relative; line-height: 300rpx; z-index: 1000; font-size: 48rpx;">
+                欢迎使用
+            </view>
+            <view class="leeson float-t">
+                Leeson
+            </view>
+            <view class="library float-t">
+                Library
+            </view>
+
+        </view>
+    </view>
+
+</view>
+
+<view class="main">
+    <view class="charts">
+        <view style="height: 300rpx; line-height: 300rpx;font-family:Cambria, Cochin, Georgia, Times, ‘Times New Roman’, serif;">
+            <view>
+                <view style="display: inline-block;color: rgba(45, 148, 62, 0.616);text-shadow: 5rpx 5rpx 10rpx rgba(45, 148, 62, 0.616);">C</view>
+                <view style="display: inline-block; color: rgba(26, 147, 156, 0.664);text-shadow: 5rpx 5rpx 10rpx rgba(26, 147, 156, 0.664)">Q</view>
+                <view style="display: inline-block;color: rgba(240, 172, 83, 0.651);text-shadow: 5rpx 5rpx 10rpx rgba(240, 172, 83, 0.651);">U</view>
+                <view style="display: inline-block;color: rgb(79, 113, 228);text-shadow: 5rpx 5rpx 10rpx rgb(79, 113, 228);">P</view>
+                <view style="display: inline-block;color: rgb(238, 63, 107);text-shadow: 5rpx 5rpx 10rpx rgb(238, 63, 107);">T</view>
+{{"  "}}
+                <image style="height: 100rpx; position: relative; top: 10rpx;" src="/resources/images/love.svg" mode="heightFix"></image>
+
+            </view>
+        </view>
+
+
+        <!-- 图表格  -->
+        <view class="chart" style="width: 700rpx; height: 550rpx;">
+            <ec-canvas id="mychart-deo" cancas-id="mychart" ec="{{ec}}"></ec-canvas>
+        </view>
+
+
+    </view>
+
+
+
+
+</view>

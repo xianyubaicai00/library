@@ -1,0 +1,35 @@
+<!--pages/notify/notify.wxml-->
+
+<view class="main">
+    <view class="notify-item" 
+    wx:for="{{notifyTexts}}" wx:key="index"
+    bindtap="notifyItemHandel" data-index="{{index}}">
+        <view class="notify-title">
+            用户名:{{item.title}} 
+        </view>
+        <view class="notify-more">
+            <view class="notify-context">{{item.context}}</view>
+            <view class="item-more">
+                <text class="notify-time">{{item.formattedDate}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="send-message-btn">
+        <button bindtap="openCreateMessage">发送信息</button>
+    </view>
+
+    <!-- 发送留言对话框 -->
+    <view wx:if="{{createMessageVisible}}" class="modal">
+        <view class="modal-content">
+            <view class="modal-header">发送新信息</view>
+            <view class="modal-body">
+                <!-- <input type="text" placeholder="请输入标题" bindinput="inputTitle" /> -->
+                <textarea placeholder="请输入内容" bindinput="inputContent"></textarea>
+            </view>
+            <view class="modal-footer">
+                <button bindtap="closeCreateMessage">取消</button>
+                <button bindtap="submitCreateMessage">发送</button>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cool.leeson.library.dao.ReceiveItemDao">
+
+    <resultMap type="cool.leeson.library.entity.receive.ReceiveItem" id="ReceiveItemMap">
+        <result property="receiveId" column="receive_id" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="libraryId" column="library_id" jdbcType="VARCHAR"/>
+        <result property="roomId" column="room_id" jdbcType="VARCHAR"/>
+        <result property="seatId" column="seat_id" jdbcType="VARCHAR"/>
+        <result property="receiveDate" column="receive_date" jdbcType="TIMESTAMP"/>
+        <result property="timeIdx" column="time_idx" jdbcType="INTEGER"/>
+        <result property="time" column="time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ReceiveItemMap">
+        select receive_id,
+               user_id,
+               library_id,
+               room_id,
+               seat_id,
+               receive_date,
+               time_idx, time
+        from receive_item
+        where receive_id = #{receiveId}
+    </select>
+    <!--查询单个 userId-->
+    <select id="queryByUserId" resultMap="ReceiveItemMap">
+        select receive_id,
+               user_id,
+               library_id,
+               room_id,
+               seat_id,
+               receive_date,
+               time_idx, time
+        from receive_item
+        where user_id = #{userId}
+        order by receive_date
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ReceiveItemMap">
+        select
+        receive_id, user_id, library_id, room_id, seat_id, receive_date, time_idx, time
+        from receive_item
+        <where>
+            <if test="receiveItem.receiveId != null and receiveItem.receiveId != ''">
+                and receive_id = #{receiveItem.receiveId}
+            </if>
+            <if test="receiveItem.userId != null and receiveItem.userId != ''">
+                and user_id = #{receiveItem.userId}
+            </if>
+            <if test="receiveItem.libraryId != null and receiveItem.libraryId != ''">
+                and library_id = #{receiveItem.libraryId}
+            </if>
+            <if test="receiveItem.roomId != null and receiveItem.roomId != ''">
+                and room_id = #{receiveItem.roomId}
+            </if>
+            <if test="receiveItem.seatId != null and receiveItem.seatId != ''">
+                and seat_id = #{receiveItem.seatId}
+            </if>
+            <if test="receiveItem.receiveDate != null">
+                and receive_date = #{receiveItem.receiveDate}
+            </if>
+            <if test="receiveItem.timeIdx != null">
+                and time_idx = #{receiveItem.timeIdx}
+            </if>
+            <if test="receiveItem.time != null">
+                and time = #{receiveItem.time}
+            </if>
+        </where>
+        ORDER BY receive_date DESC LIMIT #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from receive_item
+        <where>
+            <if test="receiveId != null and receiveId != ''">
+                and receive_id = #{receiveId}
+            </if>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="libraryId != null and libraryId != ''">
+                and library_id = #{libraryId}
+            </if>
+            <if test="roomId != null and roomId != ''">
+                and room_id = #{roomId}
+            </if>
+            <if test="seatId != null and seatId != ''">
+                and seat_id = #{seatId}
+            </if>
+            <if test="receiveDate != null">
+                and receive_date = #{receiveDate}
+            </if>
+            <if test="timeIdx != null">
+                and time_idx = #{timeIdx}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+        </where>
+    </select>
+
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="receiveId" useGeneratedKeys="true">
+        insert into receive_item(receive_id, user_id, library_id, room_id, seat_id, receive_date, time_idx, time)
+        values (#{receiveId}, #{userId}, #{libraryId}, #{roomId}, #{seatId}, #{receiveDate}, #{timeIdx}, #{time})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="receiveId" useGeneratedKeys="true">
+        insert into receive_item(receive_id, user_id, library_id, room_id, seat_id, receive_date, time_idx, time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.receiveId}, #{entity.userId}, #{entity.libraryId}, #{entity.roomId}, #{entity.seatId},
+            #{entity.receiveDate}, #{entity.timeIdx}, #{entity.time})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="receiveId" useGeneratedKeys="true">
+        insert into receive_item(user_id, library_id, room_id, seat_id, receive_date, time_idx, time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.libraryId}, #{entity.roomId}, #{entity.seatId}, #{entity.receiveDate},
+            #{entity.timeIdx}, #{entity.time})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        library_id = values(library_id),
+        room_id = values(room_id),
+        seat_id = values(seat_id),
+        receive_date = values(receive_date),
+        time_idx = values(time_idx),
+        time = values(time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update receive_item
+        <set>
+            <if test="userId != null and userId != ''">
+                user_id = #{userId},
+            </if>
+            <if test="libraryId != null and libraryId != ''">
+                library_id = #{libraryId},
+            </if>
+            <if test="roomId != null and roomId != ''">
+                room_id = #{roomId},
+            </if>
+            <if test="seatId != null and seatId != ''">
+                seat_id = #{seatId},
+            </if>
+            <if test="receiveDate != null">
+                receive_date = #{receiveDate},
+            </if>
+            <if test="timeIdx != null">
+                time_idx = #{timeIdx},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+        </set>
+        where receive_id = #{receiveId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from receive_item
+        where receive_id = #{receiveId}
+    </delete>
+
+    <select id="queryByCount" resultType="java.util.HashMap" parameterType="java.util.Map">
+        SELECT receive_date, COUNT(DISTINCT user_id) AS unique_users_count
+        FROM receive_item
+        WHERE library_id = #{libraryId}
+          AND receive_date BETWEEN #{startOfWeek} AND #{endOfWeek}
+        GROUP BY receive_date
+        ORDER BY receive_date
+    </select>
+    <select id="queryDailyTimeSlotCounts" parameterType="map" resultType="map">
+        SELECT time_idx, COUNT(DISTINCT user_id) AS count
+        FROM receive_item
+        WHERE library_id = #{libraryId}
+          AND receive_date = #{receiveDate}
+        GROUP BY time_idx
+        ORDER BY time_idx
+    </select>
+
+    <select id="queryReservationCountByCollege" resultType="map" parameterType="map">
+        SELECT u.country AS college, COUNT(DISTINCT r.user_id) AS reservation_count
+        FROM receive_item r
+                 JOIN user_info u ON r.user_id = u.user_id
+        WHERE r.receive_date BETWEEN #{startOfWeek} AND #{endOfWeek}
+        GROUP BY u.country
+        ORDER BY reservation_count DESC
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,92 @@
+/* pages/notify/notify.wxss */
+
+.send-message-btn {
+  position: fixed;
+  bottom: 20rpx; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  padding: 20rpx;
+  text-align: center;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 90%;
+  border-radius: 10px;
+}
+
+.modal-header {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-body input,
+.modal-body textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.notify-item {
+    margin: 0 0 10rpx;
+    padding: 10rpx 20rpx;
+    height: 140rpx;
+    width: calc(100% - 40rpx);
+    /* background-color: #eee; */
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.notify-title {
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    letter-spacing: 1rpx;
+    height: 50rpx;
+    font-size: 30rpx;
+}
+
+.notify-more {
+    margin: 0;
+    height: 80rpx;
+    overflow: hidden;
+}
+
+.notify-context {
+    margin: 0 0 0 20rpx;
+    height: 32rpx;
+    overflow: hidden;
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+.item-more {
+    margin-top: 14rpx;
+    font-size: 20rpx;
+
+}
+
+.notify-time {
+    letter-spacing: 1rpx;
+    margin-right: 20rpx;
+    float: right;
+    /* font-weight: 200; */
+}
+

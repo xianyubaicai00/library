@@ -1,0 +1,121 @@
+/* pages/function/function.wxss */
+page {
+    background-color: #ffffff;
+}
+
+.ad-block {
+    width: 100%;
+    text-align: center;
+    height: 300rpx;
+    line-height: 300rpx;
+    background: linear-gradient(to right top, rgb(162, 185, 248), rgb(235, 176, 68), rgb(213, 150, 250));
+    color: #fff;
+}
+
+.top-manu {
+    margin: 15rpx 15rpx;
+    width: calc(100% - 30rpx);
+    font-size: 22rpx;
+    padding: 24rpx 0 18rpx;
+
+}
+
+.top-manu-item {
+    width: 25%;
+    height: 100%;
+    display: inline-block;
+}
+
+.manu-icon {
+    margin: auto;
+    height: 50rpx;
+    display: block;
+}
+
+.manu-title {
+    margin-top: 10rpx;
+    text-align: center;
+}
+
+/* 通知 */
+
+.top-notify {
+    /* background-color: #fcfcfc; */
+    float: right;
+    font-weight: 400;
+    font-size: 22rpx;
+    background: #fff;
+    text-align: right;
+    color: rgb(247, 126, 126);
+}
+.top-message {
+  /* background-color: #fcfcfc; */
+  float: right;
+  padding-left: 10px;
+  font-weight: 400;
+  font-size: 22rpx;
+  background: #fff;
+  text-align: right;
+  color: rgb(247, 126, 126);
+  z-index: 999;
+}
+
+
+
+/* shedule */
+
+.receive-block {
+    margin: auto;
+    padding: 15rpx 20rpx;
+}
+
+.line-item {
+    margin-top: 16rpx;
+    height: 120rpx;
+    line-height: 50rpx;
+}
+
+.receive-time {
+    float: left;
+    width: 28%;
+    height: 100%;
+
+    border-top-left-radius: 16rpx;
+    border-bottom-left-radius: 16rpx;
+    text-align: center;
+    background-color: rgba(12, 161, 247, 0.18);
+}
+
+.receive-info {
+    float: left;
+    margin-left: 2%;
+    margin-top: 10rpx;
+    width: 70%;
+    height: 100rpx;
+
+}
+
+.receive-bottons {
+    float: right;
+    display: inline-block;
+    margin: 25rpx 30rpx;
+    padding: 0rpx 20rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    border-radius: 20rpx;
+    font-size: 20rpx;
+    background-color: rgba(12, 161, 247, 0.18);
+
+}
+
+.status-online {
+    position: relative;
+    top: -5rpx;
+    display: inline-block;
+    font-size: 18rpx;
+    background-color: rgba(247, 225, 26, 0.8);
+    padding: 0 10rpx;
+    line-height: 32rpx;
+    border-radius: 10rpx;
+    color: #333;
+}
